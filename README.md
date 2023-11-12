@@ -1,13 +1,13 @@
 # **Proyecto Java Coderhouse 🚀☕**
 
-El Proyecto final se construye a partir de los desafíos que se realizan clase a clase. Se va creando a medida que el estudiante sube los desafíos entregables a nuestra plataforma
+El Proyecto final se construye a partir de los desafíos que se realizan clase a clase. Se va creando a medida que el estudiante sube los desafíos entregables a nuestra plataforma.
 
 El objetivo es que cada estudiante pueda utilizar su Proyecto final como parte de su portfolio personal.
 
 ### **Consigna:**
 
 El proyecto consiste en desarrollar una aplicación que nos permita administrar las ventas de un comercio.
-Para ello necesitamos centrarnos en 3 actores, el cliente quién es el que compra los productos que son los elementos que forman las ventas del comercio
+Para ello necesitamos centrarnos en 3 actores, el cliente quién es el que compra los productos que son los elementos que forman las ventas del comercio.
 
 ---
 
