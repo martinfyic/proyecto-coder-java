@@ -3,6 +3,7 @@ package com.sales.proyectocoder.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,7 @@ public class InvoiceModel {
 
   @Column(name = "created_at", nullable = false)
   @Temporal(TemporalType.TIMESTAMP)
-  private Data createdAt;
+  private Date createdAt;
 
   @Column(nullable = false)
   private double total;
