@@ -1,5 +1,7 @@
 # **Proyecto Java Coderhouse 🚀☕**
 
+![Frontend Web Developer MERN stack](https://www.channelpartner.es/wp-content/uploads/2021/09/10085_21.jpg.webp)
+
 El Proyecto final se construye a partir de los desafíos que se realizan clase a clase. Se va creando a medida que el estudiante sube los desafíos entregables a nuestra plataforma.
 
 El objetivo es que cada estudiante pueda utilizar su Proyecto final como parte de su portfolio personal.
