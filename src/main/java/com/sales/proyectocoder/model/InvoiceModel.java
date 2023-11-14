@@ -3,16 +3,16 @@ package com.sales.proyectocoder.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
+import java.util.Date;
 
-@Entity
 @Data
+@Entity
 @Table(name = "invoice")
 public class InvoiceModel {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  private Integer id;
 
   @ManyToOne
   @JoinColumn(name = "client_id", nullable = false)
@@ -20,11 +20,9 @@ public class InvoiceModel {
 
   @Column(name = "created_at", nullable = false)
   @Temporal(TemporalType.TIMESTAMP)
-  private Data createdAt;
+  private Date createdAt;
 
   @Column(nullable = false)
-  private double total;
+  private Double total;
 
-  @OneToMany(mappedBy = "invoice")
-  private List<InvoiceDetailModel> invoiceDetails;
 }

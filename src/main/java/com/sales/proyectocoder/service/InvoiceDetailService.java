@@ -1,7 +1,6 @@
 package com.sales.proyectocoder.service;
 
 import com.sales.proyectocoder.model.InvoiceDetailModel;
-import com.sales.proyectocoder.model.ProductModel;
 import com.sales.proyectocoder.repository.InvoiceDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 

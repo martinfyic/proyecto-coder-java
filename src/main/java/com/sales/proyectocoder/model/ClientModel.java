@@ -3,16 +3,14 @@ package com.sales.proyectocoder.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
-
-@Entity
 @Data
+@Entity
 @Table(name = "clients")
 public class ClientModel {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  private Integer id;
 
   @Column(name = "first_name", nullable = false, length = 75)
   private String firstName;
@@ -23,6 +21,4 @@ public class ClientModel {
   @Column(name = "doc_number", nullable = false, length = 11)
   private String docNumber;
 
-  @OneToMany(mappedBy = "client")
-  private List<InvoiceModel> invoices;
 }

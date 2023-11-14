@@ -3,14 +3,14 @@ package com.sales.proyectocoder.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
 @Data
+@Entity
 @Table(name = "invoice_details")
 public class InvoiceDetailModel {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  private Integer id;
 
   @ManyToOne
   @JoinColumn(name = "invoice_id", nullable = false)
@@ -21,8 +21,10 @@ public class InvoiceDetailModel {
   private ProductModel product;
 
   @Column(nullable = false)
-  private int quantity;
+  private Integer quantity;
 
   @Column(nullable = false)
-  private double price;
+  private Double price;
+
+
 }

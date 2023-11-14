@@ -14,8 +14,8 @@ public class ClientService {
   private ClientRepository clientRepository;
 
   /*
-  * Listar todos los clientes
-  */
+   * Listar todos los clientes
+   */
   public List<ClientModel> getAllClients() {
     return clientRepository.findAll();
   }
@@ -23,7 +23,7 @@ public class ClientService {
   /*
    * Listar clientes por su id, utilizo Optional para manejar si no existe el cliente.
    */
-  public ClientModel getClientById (int id) {
+  public ClientModel getClientById(int id) {
     Optional<ClientModel> optionalClient = clientRepository.findById(id);
     return optionalClient.orElse(null);
   }
@@ -31,7 +31,7 @@ public class ClientService {
   /*
    * Crear cliente
    */
-  public ClientModel createClient (ClientModel client) {
+  public ClientModel createClient(ClientModel client) {
     return clientRepository.save(client);
   }
 
