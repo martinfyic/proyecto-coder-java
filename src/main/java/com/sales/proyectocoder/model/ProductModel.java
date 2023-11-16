@@ -3,7 +3,6 @@ package com.sales.proyectocoder.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
 
 @Entity
 @Data
@@ -12,7 +11,7 @@ public class ProductModel {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  private Integer id;
 
   @Column(nullable = false, length = 50)
   private String code;
@@ -21,11 +20,8 @@ public class ProductModel {
   private String description;
 
   @Column(nullable = false)
-  private int stock;
+  private Integer stock;
 
   @Column(nullable = false)
-  private double price;
-
-  @OneToMany(mappedBy = "product")
-  private List<InvoiceDetailModel> invoiceDetails;
+  private Double price;
 }
