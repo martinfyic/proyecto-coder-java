@@ -39,7 +39,7 @@ public class ClientService {
    *  Actualizar cliente, buscar por id y actualizar
    *  Luego de hacer el findById hago un map para setear los datos y en el caso que no exista lo termino con un orElse
    */
-  public ClientModel updateClient(ClientModel client, int id) {
+  public ClientModel updateClient(ClientModel client, Integer id) {
     return clientRepository.findById(id)
         .map(existingClient -> {
           existingClient.setFirstName(client.getFirstName());
@@ -50,7 +50,15 @@ public class ClientService {
         .orElse(null);
   }
 
-  /* TODO
-   *  Eliminar cliente por su id
+  /*
+   *  Eliminar cliente por su id y en el caso de no existir enviar mensaje
    */
+  public String deleteClient(Integer id) {
+    if (clientRepository.existsById(id)) {
+      clientRepository.deleteById(id);
+      return "Cliente con ID " + id + " eliminado correctamente.";
+    } else {
+      return "No se encontró un cliente con el ID proporcionado: " + id;
+    }
+  }
 }
