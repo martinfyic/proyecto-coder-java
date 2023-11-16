@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/v1/clients")
@@ -25,12 +27,21 @@ public class ClientController {
   }
 
   /*
-   *   Listar un cliente por su id
+   *   Listar un cliente por su id si no lo encuentra devuelve un objeto con el mensaje y status
    */
   @GetMapping("/{id}")
-  public ResponseEntity<ClientModel> getClientById(@PathVariable Integer id) {
+  public ResponseEntity<?> getClientById(@PathVariable Integer id) {
     ClientModel clientById = clientService.getClientById(id);
-    return (clientById != null) ? ResponseEntity.ok(clientById) : ResponseEntity.notFound().build();
+
+    if (clientById != null) {
+      return ResponseEntity.ok(clientById);
+    } else {
+      Map<String, String> response = new HashMap<>();
+      response.put("status", "error");
+      response.put("message", "No se encontró un cliente con el ID proporcionado: " + id);
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
+
   }
 
   /*
@@ -54,4 +65,9 @@ public class ClientController {
   /* TODO
    *  Eliminar  @DeleteMapping("/{id}") eliminar cliente por su id
    */
+  @DeleteMapping("/{id}")
+  public ResponseEntity<String> deleteClient(@PathVariable Integer id) {
+    String message = clientService.deleteClient(id);
+    return ResponseEntity.ok(message);
+  }
 }
