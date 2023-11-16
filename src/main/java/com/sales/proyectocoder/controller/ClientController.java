@@ -10,38 +10,48 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clients")
+@RequestMapping("api/v1/clients")
 public class ClientController {
   @Autowired
   private ClientService clientService;
 
+  /*
+   *   Listar todos los clientes
+   */
   @GetMapping
   public ResponseEntity<List<ClientModel>> getAllClients() {
     List<ClientModel> clients = clientService.getAllClients();
     return ResponseEntity.ok(clients);
   }
 
+  /*
+   *   Listar un cliente por su id
+   */
   @GetMapping("/{id}")
   public ResponseEntity<ClientModel> getClientById(int id) {
     ClientModel clientById = clientService.getClientById(id);
-    if (clientById != null) {
-      return ResponseEntity.ok(clientById);
-    } else {
-      return ResponseEntity.notFound().build();
-    }
+    return (clientById != null) ? ResponseEntity.ok(clientById) : ResponseEntity.notFound().build();
   }
 
+  /*
+   *   Crear cliente recibiendo por el body la data
+   */
   @PostMapping
   public ResponseEntity<ClientModel> createClient(@RequestBody ClientModel client) {
     ClientModel createdClient = clientService.createClient(client);
     return new ResponseEntity<>(createdClient, HttpStatus.CREATED);
   }
 
-  /* TODO
-   *   Actualizar @PutMapping("/{id}")
+  /*
+   *   Actualizar cliente recibiendo por el body la data y el id
    */
+  @PutMapping("/{id}")
+  public ResponseEntity<ClientModel> updateClient(@RequestBody ClientModel client, int id) {
+    ClientModel updatedClient = clientService.updateClient(client, id);
+    return (updatedClient != null) ? ResponseEntity.ok(updatedClient) : ResponseEntity.notFound().build();
+  }
 
   /* TODO
-   *  Actualizar @DeleteMapping("/{id}")
+   *  Eliminar  @DeleteMapping("/{id}") eliminar cliente por su id
    */
 }
