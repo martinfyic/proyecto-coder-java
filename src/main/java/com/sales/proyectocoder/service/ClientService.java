@@ -35,9 +35,20 @@ public class ClientService {
     return clientRepository.save(client);
   }
 
-  /* TODO
+  /*
    *  Actualizar cliente, buscar por id y actualizar
+   *  Luego de hacer el findById hago un map para setear los datos y en el caso que no exista lo termino con un orElse
    */
+  public ClientModel updateClient(ClientModel client, int id) {
+    return clientRepository.findById(id)
+        .map(existingClient -> {
+          existingClient.setFirstName(client.getFirstName());
+          existingClient.setLastName(client.getLastName());
+          existingClient.setDocNumber(client.getDocNumber());
+          return clientRepository.save(existingClient);
+        })
+        .orElse(null);
+  }
 
   /* TODO
    *  Eliminar cliente por su id
