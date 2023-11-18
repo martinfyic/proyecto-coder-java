@@ -25,6 +25,7 @@ Aquí tienes un diagrama representa las relaciones de las tablas:
 - `id` (PK) INT
 - `first_name` VARCHAR(75)
 - `last_name` VARCHAR(75)
+- `birthdate` DATE
 - `doc_number` VARCHAR(11)
 
 #### Tabla: products
@@ -66,8 +67,9 @@ USE coderproyect;
 CREATE TABLE clients (
 	id INT AUTO_INCREMENT,
     first_name VARCHAR(75) NOT NULL,
-    last_name varchar(75) NOT NULL,
-    doc_number varchar(11) NOT NULL,
+    last_name VARCHAR(75) NOT NULL,
+    birthdate DATE NOT NULL,
+    doc_number VARCHAR(11) NOT NULL,
     PRIMARY KEY (id)
 );
 

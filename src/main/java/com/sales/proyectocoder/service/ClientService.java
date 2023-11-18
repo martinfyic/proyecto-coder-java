@@ -2,9 +2,15 @@ package com.sales.proyectocoder.service;
 
 import com.sales.proyectocoder.model.ClientModel;
 import com.sales.proyectocoder.repository.ClientRepository;
+import com.sales.proyectocoder.response.ClientResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +35,21 @@ public class ClientService {
   }
 
   /*
+   * Listar cliente por su id, pero mostrar unicamente, firstName,LastName y yearOld
+   */
+  public ClientResponse getClientYearsOld(Integer id) {
+    Optional<ClientModel> clientById = clientRepository.findById(id);
+
+    if (clientById.isPresent()) {
+      ClientModel client = clientById.get();
+      int yearsOld = calculateYearsOld(client.getBirthdate());
+      return new ClientResponse(client.getFirstName(), client.getLastName(), yearsOld);
+    } else {
+      return null;
+    }
+  }
+
+  /*
    * Crear cliente
    */
   public ClientModel createClient(ClientModel client) {
@@ -44,6 +65,7 @@ public class ClientService {
         .map(existingClient -> {
           existingClient.setFirstName(client.getFirstName());
           existingClient.setLastName(client.getLastName());
+          existingClient.setBirthdate(client.getBirthdate());
           existingClient.setDocNumber(client.getDocNumber());
           return clientRepository.save(existingClient);
         })
@@ -60,5 +82,17 @@ public class ClientService {
     } else {
       return "No se encontró un cliente con el ID proporcionado: " + id;
     }
+  }
+
+  /*
+   *  Calcular los yearsOld del cliente, recibo por parametro fecvha de nacimiento del cliente guardado en DB
+   *  metodo privado del serivce
+   */
+  private int calculateYearsOld(Date birthdate) {
+    Instant instant = birthdate.toInstant();
+    ZoneId zoneId = ZoneId.systemDefault();
+    LocalDate birthdateLocalDate = instant.atZone(zoneId).toLocalDate();
+    LocalDate currentDate = LocalDate.now();
+    return Period.between(birthdateLocalDate, currentDate).getYears();
   }
 }

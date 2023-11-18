@@ -9,7 +9,8 @@ CREATE DATABASE coderproyect;
 CREATE TABLE coderproyect.clients (
 	id INT AUTO_INCREMENT,
     first_name VARCHAR(75) NOT NULL,
-    last_name varchar(75) NOT NULL,
+    last_name VARCHAR(75) NOT NULL,
+    birthdate DATE NOT NULL,
     doc_number varchar(11) NOT NULL,
     PRIMARY KEY (id)
 );

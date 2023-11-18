@@ -1,6 +1,7 @@
 package com.sales.proyectocoder.controller;
 
 import com.sales.proyectocoder.model.ClientModel;
+import com.sales.proyectocoder.response.ClientResponse;
 import com.sales.proyectocoder.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,23 @@ public class ClientController {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 
+  }
+
+  /*
+   *   Listar un cliente por su id y mostrar en JSON {firstName, lastname, yearsOld}
+   */
+  @GetMapping("/{id}/years-old")
+  public ResponseEntity<?> getClientYearsOld(@PathVariable Integer id) {
+    ClientResponse clientResponse = clientService.getClientYearsOld(id);
+
+    if (clientResponse != null) {
+      return ResponseEntity.ok(clientResponse);
+    } else {
+      Map<String, String> response = new HashMap<>();
+      response.put("status", "error");
+      response.put("message", "No se encontró un cliente con el ID proporcionado: " + id);
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
   }
 
   /*
