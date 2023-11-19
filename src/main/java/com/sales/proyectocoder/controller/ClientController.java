@@ -1,7 +1,7 @@
 package com.sales.proyectocoder.controller;
 
 import com.sales.proyectocoder.model.ClientModel;
-import com.sales.proyectocoder.response.ClientResponse;
+import com.sales.proyectocoder.response.ClientYearsOldResponse;
 import com.sales.proyectocoder.response.DeleteResponse;
 import com.sales.proyectocoder.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +51,7 @@ public class ClientController {
    */
   @GetMapping("/{id}/years-old")
   public ResponseEntity<?> getClientYearsOld(@PathVariable Integer id) {
-    ClientResponse clientResponse = clientService.getClientYearsOld(id);
+    ClientYearsOldResponse clientResponse = clientService.getClientYearsOld(id);
 
     if (clientResponse != null) {
       return ResponseEntity.ok(clientResponse);

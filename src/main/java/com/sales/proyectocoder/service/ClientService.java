@@ -2,7 +2,7 @@ package com.sales.proyectocoder.service;
 
 import com.sales.proyectocoder.model.ClientModel;
 import com.sales.proyectocoder.repository.ClientRepository;
-import com.sales.proyectocoder.response.ClientResponse;
+import com.sales.proyectocoder.response.ClientYearsOldResponse;
 import com.sales.proyectocoder.response.DeleteResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,13 +38,13 @@ public class ClientService {
   /*
    * Listar cliente por su id, pero mostrar unicamente, firstName,LastName y yearOld
    */
-  public ClientResponse getClientYearsOld(Integer id) {
+  public ClientYearsOldResponse getClientYearsOld(Integer id) {
     Optional<ClientModel> clientById = clientRepository.findById(id);
 
     if (clientById.isPresent()) {
       ClientModel client = clientById.get();
       int yearsOld = calculateYearsOld(client.getBirthdate());
-      return new ClientResponse(client.getFirstName(), client.getLastName(), yearsOld);
+      return new ClientYearsOldResponse(client.getFirstName(), client.getLastName(), yearsOld);
     } else {
       return null;
     }
