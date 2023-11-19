@@ -3,6 +3,7 @@ package com.sales.proyectocoder.service;
 import com.sales.proyectocoder.model.ClientModel;
 import com.sales.proyectocoder.repository.ClientRepository;
 import com.sales.proyectocoder.response.ClientResponse;
+import com.sales.proyectocoder.response.DeleteResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,35 +59,49 @@ public class ClientService {
 
   /*
    *  Actualizar cliente, buscar por id y actualizar
-   *  Luego de hacer el findById hago un map para setear los datos y en el caso que no exista lo termino con un orElse
    */
   public ClientModel updateClient(ClientModel client, Integer id) {
-    return clientRepository.findById(id)
-        .map(existingClient -> {
-          existingClient.setFirstName(client.getFirstName());
-          existingClient.setLastName(client.getLastName());
-          existingClient.setBirthdate(client.getBirthdate());
-          existingClient.setDocNumber(client.getDocNumber());
-          return clientRepository.save(existingClient);
-        })
-        .orElse(null);
+    Optional<ClientModel> clientExist = clientRepository.findById(id);
+
+    if (clientExist.isPresent()) {
+      ClientModel clientUpdated = clientExist.get();
+
+      if (client.getFirstName() != null) {
+        clientUpdated.setFirstName(client.getFirstName());
+      }
+
+      if (client.getLastName() != null) {
+        clientUpdated.setLastName(client.getLastName());
+      }
+
+      if (client.getBirthdate() != null) {
+        clientUpdated.setBirthdate(client.getBirthdate());
+      }
+
+      if (client.getDocNumber() != null) {
+        clientUpdated.setDocNumber(client.getDocNumber());
+      }
+
+      return clientRepository.save(clientUpdated);
+    } else {
+      return null;
+    }
   }
 
   /*
    *  Eliminar cliente por su id y en el caso de no existir enviar mensaje
    */
-  public String deleteClient(Integer id) {
+  public DeleteResponse deleteClient(Integer id) {
     if (clientRepository.existsById(id)) {
       clientRepository.deleteById(id);
-      return "Cliente con ID " + id + " eliminado correctamente.";
+      return new DeleteResponse("success", "Cliente con ID " + id + " eliminado correctamente.");
     } else {
-      return "No se encontró un cliente con el ID proporcionado: " + id;
+      return new DeleteResponse("error", "No se encontró un cliente con el ID proporcionado: " + id);
     }
   }
 
   /*
    *  Calcular los yearsOld del cliente, recibo por parametro fecvha de nacimiento del cliente guardado en DB
-   *  metodo privado del serivce
    */
   private int calculateYearsOld(Date birthdate) {
     Instant instant = birthdate.toInstant();

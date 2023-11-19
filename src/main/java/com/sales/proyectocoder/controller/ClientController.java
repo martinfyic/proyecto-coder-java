@@ -2,6 +2,7 @@ package com.sales.proyectocoder.controller;
 
 import com.sales.proyectocoder.model.ClientModel;
 import com.sales.proyectocoder.response.ClientResponse;
+import com.sales.proyectocoder.response.DeleteResponse;
 import com.sales.proyectocoder.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -80,12 +81,12 @@ public class ClientController {
     return (updatedClient != null) ? ResponseEntity.ok(updatedClient) : ResponseEntity.notFound().build();
   }
 
-  /* TODO
+  /*
    *  Eliminar  @DeleteMapping("/{id}") eliminar cliente por su id
    */
   @DeleteMapping("/{id}")
-  public ResponseEntity<String> deleteClient(@PathVariable Integer id) {
-    String message = clientService.deleteClient(id);
-    return ResponseEntity.ok(message);
+  public ResponseEntity<DeleteResponse> deleteClient(@PathVariable Integer id) {
+    DeleteResponse  response = clientService.deleteClient(id);
+    return ResponseEntity.ok(response);
   }
 }
