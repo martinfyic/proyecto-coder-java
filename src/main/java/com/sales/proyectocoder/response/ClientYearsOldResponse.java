@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClientResponse {
+public class ClientYearsOldResponse {
 
   private String firstName;
   private String lastName;
