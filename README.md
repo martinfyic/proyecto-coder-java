@@ -1,6 +1,8 @@
-# **Proyecto Java Coderhouse 🚀☕**
+<h1 align="center"><strong>Proyecto Java Coderhouse 🚀☕</strong></h1>
 
-![Frontend Web Developer MERN stack](https://www.channelpartner.es/wp-content/uploads/2021/09/10085_21.jpg.webp)
+<p align="center">
+  <img src="https://www.channelpartner.es/wp-content/uploads/2021/09/10085_21.jpg.webp" alt="Java Logo">
+</p>
 
 El Proyecto final se construye a partir de los desafíos que se realizan clase a clase. Se va creando a medida que el estudiante sube los desafíos entregables a nuestra plataforma.
 
@@ -13,7 +15,7 @@ Para ello necesitamos centrarnos en 3 actores, el cliente quién es el que compr
 
 ---
 
-## **Primer pre entrega 1️⃣**
+<h2 align="center"><strong>Primer pre entrega 1️⃣</strong></h2>
 
 Entregar el proyecto con las clases que forman parte de la solución correspondiente a la primera entrega de tu proyecto final.
 
@@ -101,4 +103,207 @@ CREATE TABLE invoice_details (
     CONSTRAINT fk_invoice_id FOREIGN KEY (invoice_id) REFERENCES invoice(id),
     CONSTRAINT fk_products_id FOREIGN KEY (product_id) REFERENCES products(id)
 );
+```
+---
+
+# Documentación de la API REST 📄
+
+## Base URL
+
+`api/v1/clients`
+
+## Endpoints 🔗
+
+### 🌐 Obtener todos los clientes
+
+**Endpoint:**
+
+`GET /`
+
+**Descripción:**
+
+Este endpoint devuelve una lista de todos los clientes.
+
+**Parámetros de consulta:**
+
+- Ninguno
+
+**Ejemplo de respuesta exitosa:**
+
+```json
+[
+  {
+    "id": 1,
+    "firstName": "Jon",
+    "lastName": "Doe",
+    "birthdate": "1989-09-18T03:00:00.000+00:00",
+    "docNumber": "97429348"
+  },
+  {
+    "id": 2,
+    "firstName": "Luis",
+    "lastName": "Flores",
+    "birthdate": "1989-10-03T03:00:00.000+00:00",
+    "docNumber": "25643456"
+  },
+  {
+    "id": 3,
+    "firstName": "Mariana ",
+    "lastName": "Jordan",
+    "birthdate": "2000-10-03T03:00:00.000+00:00",
+    "docNumber": "25643456"
+  }
+      // ... otros clientes
+]
+```
+
+### 🌐 Obtener un cliente en específico
+
+**Endpoint:**
+
+`GET /{id}`
+
+**Descripción:**
+
+Este endpoint devuelve información sobre un cliente específico.
+
+**Parámetros de consulta:**
+
+- `{id}`: Identificador único del cliente.
+
+**Ejemplo de respuesta exitosa:**
+
+```json
+{
+  "id": 1,
+  "firstName": "Jon",
+  "lastName": "Doe",
+  "birthdate": "1989-09-18T03:00:00.000+00:00",
+  "docNumber": "97429348"
+}
+```
+
+### 🌐 Obtener un cliente por su id y devuelve su edad
+
+**Endpoint:**
+
+`GET /{id}/years-old`
+
+**Descripción:**
+
+Este endpoint devuelve el nombre, apellido y edad sobre un cliente específico.
+
+**Parámetros de consulta:**
+
+- `{id}`: Identificador único del cliente.
+
+**Ejemplo de respuesta exitosa:**
+
+```json
+{
+  "firstName": "Jon",
+  "lastName": "Doe",
+  "yearsOld": 34
+}
+```
+
+### 🌐 Crear un cliente
+
+**Endpoint:**
+
+`POST /`
+
+**Descripción:**
+
+Este endpoint permite agregar un nuevo cliente a la colección.
+
+**Parámetros del cuerpo de la solicitud:**
+
+- `firstName` (string): Nombre del cliente.
+- `lastName` (string): Apellido del cliente.
+- `birthdate` (date): Año de nacimiento del cliente.
+- `docNumber` (string): Nro de DNI.
+
+**Ejemplo de cuerpo de solicitud:**
+
+```json
+{
+  "firstName": "Bruce ",
+  "lastName": "Wayne ",
+  "birthdate": "2005-10-04",
+  "docNumber": "25643456"
+}
+```
+
+**Ejemplo de respuesta exitosa:**
+
+```json
+{
+  "id": 5,
+  "firstName": "Bruce ",
+  "lastName": "Wayne ",
+  "birthdate": "2005-10-04T00:00:00.000+00:00",
+  "docNumber": "25643456"
+}
+```
+
+### 🌐 Actualizar información de un cliente
+
+**Endpoint:**
+
+`PUT /{id}`
+
+**Descripción:**
+Este endpoint permite actualizar la información de un cliente existente.
+
+**Parámetros de ruta:**
+
+- `{id}`: Identificador único del cliente.
+
+**Parámetros del cuerpo de la solicitud:**
+
+- Cualquier parámetro que desees actualizar (puede incluir `firstName`, `lastName`, `birthdate`, `docNumber`).
+
+**Ejemplo de cuerpo de solicitud:**
+
+```json
+{
+  "firstName": "Clark",
+  "lastName": "Kent"
+}
+```
+
+**Ejemplo de respuesta exitosa:**
+
+```json
+{
+  "id": 5,
+  "firstName": "Clark",
+  "lastName": "Kent",
+  "birthdate": "2005-10-04T00:00:00.000+00:00",
+  "docNumber": "25643456"
+}
+```
+
+### 🌐 Eliminar un cliente
+
+**Endpoint:**
+
+`DELETE /{id}`
+
+**Descripción:**
+
+Este endpoint permite eliminar un cliente de la colección.
+
+**Parámetros de ruta:**
+
+- `{id}`: Identificador único del cliente.
+
+**Ejemplo de respuesta exitosa:**
+
+```json
+{
+  "status": "success",
+  "message": "Cliente con ID 3 eliminado correctamente."
+}
 ```
