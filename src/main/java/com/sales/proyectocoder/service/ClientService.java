@@ -20,23 +20,28 @@ public class ClientService {
   @Autowired
   private ClientRepository clientRepository;
 
-  /*
-   * Listar todos los clientes
+  /**
+   *
+   * @return Lista con todos los clientes en DB
    */
   public List<ClientModel> getAllClients() {
     return clientRepository.findAll();
   }
 
-  /*
-   * Listar clientes por su id, utilizo Optional para manejar si no existe el cliente.
+  /**
+   *
+   * @param id identificador unico del cliente
+   * @return devuelve cliente seleccionado
    */
   public ClientModel getClientById(Integer id) {
     Optional<ClientModel> optionalClient = clientRepository.findById(id);
     return optionalClient.orElse(null);
   }
 
-  /*
-   * Listar cliente por su id, pero mostrar unicamente, firstName,LastName y yearOld
+  /**
+   *
+   * @param id identificador unico del cliente
+   * @return devuelve cliente con el calculo de cuantos años tiene
    */
   public ClientYearsOldResponse getClientYearsOld(Integer id) {
     Optional<ClientModel> clientById = clientRepository.findById(id);
@@ -50,8 +55,10 @@ public class ClientService {
     }
   }
 
-  /*
-   * Crear cliente
+  /**
+   *
+   * @param client objeto del tipo ClientModel
+   * @return devuelve cliente creado
    */
   public ClientModel createClient(ClientModel client) {
     return clientRepository.save(client);
