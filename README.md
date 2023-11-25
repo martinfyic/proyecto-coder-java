@@ -19,6 +19,35 @@ Para ello necesitamos centrarnos en 3 actores, el cliente quién es el que compr
 
 Entregar el proyecto con las clases que forman parte de la solución correspondiente a la primera entrega de tu proyecto final.
 
+### **Objetivos generales:**
+
+- Integrar los conocimientos vistos hasta ahora
+- Poder diseñar una solución
+
+### **Objetivos específicos:**
+
+- Establecer las entidades que representan la solución del proyecto
+- Poder generar los scripts para modelar la base de datos de acuerdo al diseño de las clases.
+
+---
+
+<h2 align="center"><strong>Segunda pre entrega 2️⃣</strong></h2>
+
+Consiste en tomar el proyecto de la primera entrega para convertirlo en un proyecto Spring Boot el cual utilice alguna librería de jpa para poder conectarse a la base de datos.
+
+### **Objetivos generales:**
+
+- Tomar el proyecto de la primera entrega para convertirlo en un proyecto Spring Boot
+- Utilizar alguna librería de jpa para poder conectarse a la base de datos.
+
+### **Objetivos específicos:**
+
+- Cada entidad definida en la primera entrega debe usar la arquitectura de 3 capas para ser manipulada.
+- Se espera que las modificaciones se realicen en cascada.
+- Generar los scripts de inicialización de datos  para las tablas creadas en la primera entrega
+
+---
+
 ### **Diagrama de Relaciones de las Tablas 📄**
 
 Aquí tienes un diagrama representa las relaciones de las tablas:
@@ -55,7 +84,7 @@ Aquí tienes un diagrama representa las relaciones de las tablas:
 
 ### Script SQL 📄
 
-Este script te permitira generar la DB junto a sus tablas con sus relaciones.
+Este script te permitira generar la DB junto a sus tablas con sus relaciones. [script](./src/main/resources/schema.sql)
 
 Luego de `CREATE DATABASE coderproyect;` puedes usar el comando `USE coderproyect;` para trabajar sobre la DB creada, o al momento de generar las tables puedes usar de la siguiente manera de ejemplo `CREATE TABLE coderproyect.clients`
 
@@ -108,13 +137,13 @@ CREATE TABLE invoice_details (
 
 <h2 align="center"><strong> Documentación de la API REST 📄 </strong></h2>
 
-## Base URL
+## Base URL - Clients
 
 `api/v1/clients`
 
 ## Endpoints 🔗
 
-### 🌐 Obtener todos los clientes
+### 🌐 Obtener todos los clientes 👤
 
 **Endpoint:**
 
@@ -254,7 +283,7 @@ Este endpoint permite agregar un nuevo cliente a la colección.
 `PUT /{id}`
 
 **Descripción:**
-Este endpoint permite actualizar la información de un cliente existente.
+Este endpoint permite actualizar la información de un cliente, se pueden actualizar toda la información o solo la seleccionada.
 
 **Parámetros de ruta:**
 
@@ -305,5 +334,175 @@ Este endpoint permite eliminar un cliente de la colección.
 {
   "status": "success",
   "message": "Cliente con ID 3 eliminado correctamente."
+}
+```
+
+## Base URL - Products 📦
+
+`api/v1/products`
+
+## Endpoints 🔗
+
+### 🌐 Obtener todos los productos
+
+**Endpoint:**
+
+`GET /`
+
+**Descripción:**
+
+Este endpoint devuelve una lista de todos los productos.
+
+**Parámetros de consulta:**
+
+- Ninguno
+
+**Ejemplo de respuesta exitosa:**
+
+```json
+[
+  {
+    "id": 1,
+    "code": "JEAN001",
+    "description": "Pantalon jean skin",
+    "stock": 20,
+    "price": 3200
+  },
+  {
+    "id": 3,
+    "code": "TSHIRT",
+    "description": "Remera clasica blanca",
+    "stock": 40,
+    "price": 1200
+  }
+      // ... otros clientes
+]
+```
+
+### 🌐 Obtener un producto en específico
+
+**Endpoint:**
+
+`GET /{id}`
+
+**Descripción:**
+
+Este endpoint devuelve información sobre un producto específico.
+
+**Parámetros de consulta:**
+
+- `{id}`: Identificador único del producto.
+
+**Ejemplo de respuesta exitosa:**
+
+```json
+{
+  "id": 1,
+  "code": "JEAN001",
+  "description": "Pantalon jean skin",
+  "stock": 20,
+  "price": 3200
+}
+```
+
+### 🌐 Crear un producto
+
+**Endpoint:**
+
+`POST /`
+
+**Descripción:**
+
+Este endpoint permite agregar un nuevo producto a la colección.
+
+**Parámetros del cuerpo de la solicitud:**
+
+- `code` (string): Codigo del producto.
+- `description` (string): Descripcion del producto.
+- `stock` (integer): Cantidad disponible del producto.
+- `price` (double): Precio del producto.
+
+**Ejemplo de cuerpo de solicitud:**
+
+```json
+{
+  "code": "CAT2023001",
+  "description": "Gorro clasico beisbol",
+  "stock": 25,
+  "price": 1030.65
+}
+```
+
+**Ejemplo de respuesta exitosa:**
+
+```json
+{
+  "id": 4,
+  "code": "CAT2023001",
+  "description": "Gorro clasico beisbol",
+  "stock": 25,
+  "price": 1030.65
+}
+```
+
+### 🌐 Actualizar información de un Producto
+
+**Endpoint:**
+
+`PUT /{id}`
+
+**Descripción:**
+Este endpoint permite actualizar la información de un producto, se pueden actualizar toda la información o solo la seleccionada.
+
+**Parámetros de ruta:**
+
+- `{id}`: Identificador único del Producto.
+
+**Parámetros del cuerpo de la solicitud:**
+
+- Cualquier parámetro que desees actualizar (puede incluir `code`, `description`, `stock`, `price`).
+
+**Ejemplo de cuerpo de solicitud:**
+
+```json
+{
+  "description": "Gorro deportivo beisbol",
+  "stock": 8,
+  "price": 1199.98
+}
+```
+
+**Ejemplo de respuesta exitosa:**
+
+```json
+{
+  "id": 4,
+  "code": "CAT2023001",
+  "description": "Gorro deportivo beisbol",
+  "stock": 8,
+  "price": 1199.98
+}
+```
+
+### 🌐 Eliminar un producto
+
+**Endpoint:**
+
+`DELETE /{id}`
+
+**Descripción:**
+
+Este endpoint permite eliminar un producto de la colección.
+
+**Parámetros de ruta:**
+
+- `{id}`: Identificador único del producto.
+
+**Ejemplo de respuesta exitosa:**
+
+```json
+{
+  "status": "success",
+  "message": "Producto con ID 4 eliminado correctamente."
 }
 ```
