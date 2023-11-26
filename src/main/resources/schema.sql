@@ -38,7 +38,7 @@ CREATE TABLE coderproyect.invoice_details (
     invoice_id INT NOT NULL,
     product_id INT NOT NULL,
     quantity INT NOT NULL,
-    pirce DOUBLE NOT NULL,
+    price DOUBLE NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT fk_invoice_id FOREIGN KEY (invoice_id) REFERENCES invoice(id),
     CONSTRAINT fk_products_id FOREIGN KEY (product_id) REFERENCES products(id)

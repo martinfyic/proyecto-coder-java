@@ -19,8 +19,9 @@ public class ClientController {
   @Autowired
   private ClientService clientService;
 
-  /*
-   *   Listar todos los clientes
+  /**
+   *
+   * @return Lista de todos los clientes
    */
   @GetMapping
   public ResponseEntity<List<ClientModel>> getAllClients() {
@@ -28,8 +29,10 @@ public class ClientController {
     return ResponseEntity.ok(clients);
   }
 
-  /*
-   *   Listar un cliente por su id si no lo encuentra devuelve un objeto con el mensaje y status
+  /**
+   *
+   * @param id numero identificador del cliente
+   * @return Retorna cliente seleccionado por su id
    */
   @GetMapping("/{id}")
   public ResponseEntity<?> getClientById(@PathVariable Integer id) {
@@ -46,8 +49,10 @@ public class ClientController {
 
   }
 
-  /*
-   *   Listar un cliente por su id y mostrar en JSON {firstName, lastname, yearsOld}
+  /**
+   *
+   * @param id numero identificador del cliente
+   * @return Retorna la edad de un cliente seleccionado
    */
   @GetMapping("/{id}/years-old")
   public ResponseEntity<?> getClientYearsOld(@PathVariable Integer id) {
@@ -63,8 +68,10 @@ public class ClientController {
     }
   }
 
-  /*
-   *   Crear cliente recibiendo por el body la data
+  /**
+   *
+   * @param client informacion del cliente a crear, ejemplo: { "firstName": "Bruce ", "lastName": "Wayne ", "birthdate": "2005-10-04", "docNumber": "25643456" }
+   * @return Crea cliente creado
    */
   @PostMapping
   public ResponseEntity<ClientModel> createClient(@RequestBody ClientModel client) {
@@ -72,8 +79,11 @@ public class ClientController {
     return new ResponseEntity<>(createdClient, HttpStatus.CREATED);
   }
 
-  /*
-   *   Actualizar cliente recibiendo por el body la data y el id
+  /**
+   *
+   * @param client informacion del cliente que vamos a actualizar, ejemplo: { "firstName": "Bruce ", "lastName": "Wayne ", "birthdate": "2005-10-04", "docNumber": "25643456" }
+   * @param id identificador unico del cliente que vamos a actualizar
+   * @return Actualiza un cliente seleccionado
    */
   @PutMapping("/{id}")
   public ResponseEntity<ClientModel> updateClient(@RequestBody ClientModel client, @PathVariable Integer id) {
@@ -81,8 +91,10 @@ public class ClientController {
     return (updatedClient != null) ? ResponseEntity.ok(updatedClient) : ResponseEntity.notFound().build();
   }
 
-  /*
-   *  Eliminar  @DeleteMapping("/{id}") eliminar cliente por su id
+  /**
+   *
+   * @param id numero identificador del cliente
+   * @return Elimina un cliente seleccionado
    */
   @DeleteMapping("/{id}")
   public ResponseEntity<DeleteResponse> deleteClient(@PathVariable Integer id) {
