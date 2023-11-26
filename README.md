@@ -29,8 +29,6 @@ Entregar el proyecto con las clases que forman parte de la solución correspondi
 - Establecer las entidades que representan la solución del proyecto
 - Poder generar los scripts para modelar la base de datos de acuerdo al diseño de las clases.
 
----
-
 <h2 align="center"><strong>Segunda pre entrega 2️⃣</strong></h2>
 
 Consiste en tomar el proyecto de la primera entrega para convertirlo en un proyecto Spring Boot el cual utilice alguna librería de jpa para poder conectarse a la base de datos.
