@@ -1,6 +1,9 @@
 package com.sales.proyectocoder.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 
 @Data
@@ -20,9 +23,13 @@ public class InvoiceDetailModel {
   @JoinColumn(name = "product_id", nullable = false)
   private ProductModel product;
 
+  @NotNull
+  @PositiveOrZero
   @Column(nullable = false)
   private Integer quantity;
 
+  @NotNull
+  @Positive
   @Column(nullable = false)
   private Double price;
 
