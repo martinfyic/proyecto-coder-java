@@ -1,6 +1,8 @@
 package com.sales.proyectocoder.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 
 import java.util.Date;
@@ -23,6 +25,8 @@ public class InvoiceModel {
   @Temporal(TemporalType.TIMESTAMP)
   private Date createdAt;
 
+  @NotNull
+  @PositiveOrZero
   @Column(nullable = false)
   private double total;
 
