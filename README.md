@@ -137,13 +137,13 @@ CREATE TABLE invoice_details (
 
 <h2 align="center"><strong> Documentación de la API REST 📄 </strong></h2>
 
-## Base URL - Clients
+## Base URL - Clients 👤
 
 `api/v1/clients`
 
 ## Endpoints 🔗
 
-### 🌐 Obtener todos los clientes 👤
+### 🌐 Obtener todos los clientes
 
 **Endpoint:**
 
