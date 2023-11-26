@@ -3,15 +3,21 @@ package com.sales.proyectocoder.service;
 import com.sales.proyectocoder.model.InvoiceModel;
 import com.sales.proyectocoder.repository.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class InvoiceService {
 
   @Autowired
   private InvoiceRepository invoiceRepository;
 
-  public List<InvoiceModel> getAllInvoice() {
+  /**
+   *
+   * @return Metodo para devolver todas las invoices
+   */
+  public List<InvoiceModel> getAllInvoices() {
     return invoiceRepository.findAll();
   }
 
@@ -30,4 +36,5 @@ public class InvoiceService {
   /* TODO
    *  Eliminar un producto por id
    */
+
 }
