@@ -1,5 +1,6 @@
 package com.sales.proyectocoder.service;
 
+import com.sales.proyectocoder.DTO.ClientDTO;
 import com.sales.proyectocoder.model.ClientModel;
 import com.sales.proyectocoder.repository.ClientRepository;
 import com.sales.proyectocoder.response.ClientYearsOldResponse;
@@ -14,6 +15,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ClientService {
@@ -24,8 +26,18 @@ public class ClientService {
    *
    * @return Lista con todos los clientes en DB
    */
-  public List<ClientModel> getAllClients() {
-    return clientRepository.findAll();
+  public List<ClientDTO> getAllClients() {
+    List<ClientModel> clients = clientRepository.findAll();
+
+    return clients.stream().map(client -> {
+      ClientDTO clientDTO = new ClientDTO();
+      clientDTO.setId(client.getId());
+      clientDTO.setFirstName(client.getFirstName());
+      clientDTO.setLastName(client.getLastName());
+      clientDTO.setBirthdate(client.getBirthdate());
+      clientDTO.setDocNumber(client.getDocNumber());
+      return clientDTO;
+    }).collect(Collectors.toList());
   }
 
   /**
@@ -33,9 +45,14 @@ public class ClientService {
    * @param id identificador unico del cliente
    * @return devuelve cliente seleccionado
    */
-  public ClientModel getClientById(Integer id) {
-    Optional<ClientModel> optionalClient = clientRepository.findById(id);
-    return optionalClient.orElse(null);
+  public ClientDTO getClientById(Integer id) {
+    final Optional<ClientModel> optionalClient = clientRepository.findById(id);
+    if (optionalClient.isEmpty()) {
+      return null;
+    }
+
+    final ClientModel client = optionalClient.get();
+    return new ClientDTO(client.getId(), client.getFirstName(), client.getLastName(), client.getBirthdate(), client.getDocNumber());
   }
 
   /**
