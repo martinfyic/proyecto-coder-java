@@ -30,7 +30,7 @@ public class ProductController {
 
   /**
    *
-   * @param id numero identificador del producto
+   * @param id número identificador del producto
    * @return Retorna producto seleccionado
    */
   @GetMapping("/{id}")
@@ -48,7 +48,7 @@ public class ProductController {
 
   /**
    *
-   * @param product informacion del producto a crear, ejemplo: { "code": "TSHIRT", "description": "Remera clasica blanca", "stock": 40, "price": 1200 }
+   * @param product información del producto a crear, ejemplo: { "code": "TSHIRT", "description": "Remera clasica blanca", "stock": 40, "price": 1200 }
    * @return Retorna producto creado
    */
   @PostMapping
@@ -59,8 +59,8 @@ public class ProductController {
 
   /**
    *
-   * @param product informacion para actualizar producto
-   * @param id numero identificador del producto
+   * @param product información para actualizar producto
+   * @param id número identificador del producto
    * @return
    */
   @PutMapping("/{id}")
@@ -71,7 +71,7 @@ public class ProductController {
 
   /**
    *
-   * @param id numero identificador del producto
+   * @param id número identificador del producto
    * @return Devuelve String con mensaje de success o error
    */
   @DeleteMapping("/{id}")
