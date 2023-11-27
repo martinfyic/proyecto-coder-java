@@ -1,5 +1,6 @@
 package com.sales.proyectocoder.controller;
 
+import com.sales.proyectocoder.DTO.ClientDTO;
 import com.sales.proyectocoder.model.ClientModel;
 import com.sales.proyectocoder.response.ClientYearsOldResponse;
 import com.sales.proyectocoder.response.DeleteResponse;
@@ -20,12 +21,11 @@ public class ClientController {
   private ClientService clientService;
 
   /**
-   *
    * @return Lista de todos los clientes
    */
   @GetMapping
-  public ResponseEntity<List<ClientModel>> getAllClients() {
-    List<ClientModel> clients = clientService.getAllClients();
+  public ResponseEntity<List<ClientDTO>> getAllClients() {
+    List<ClientDTO> clients = clientService.getAllClients();
     return ResponseEntity.ok(clients);
   }
 
@@ -36,7 +36,7 @@ public class ClientController {
    */
   @GetMapping("/{id}")
   public ResponseEntity<?> getClientById(@PathVariable Integer id) {
-    ClientModel clientById = clientService.getClientById(id);
+    ClientDTO clientById = clientService.getClientById(id);
 
     if (clientById != null) {
       return ResponseEntity.ok(clientById);
@@ -70,7 +70,7 @@ public class ClientController {
 
   /**
    *
-   * @param client informacion del cliente a crear, ejemplo: { "firstName": "Bruce ", "lastName": "Wayne ", "birthdate": "2005-10-04", "docNumber": "25643456" }
+   * @param client información del cliente a crear, ejemplo: { "firstName": "Bruce ", "lastName": "Wayne ", "birthdate": "2005-10-04", "docNumber": "25643456" }
    * @return Crea cliente creado
    */
   @PostMapping
@@ -81,7 +81,7 @@ public class ClientController {
 
   /**
    *
-   * @param client informacion del cliente que vamos a actualizar, ejemplo: { "firstName": "Bruce ", "lastName": "Wayne ", "birthdate": "2005-10-04", "docNumber": "25643456" }
+   * @param client información del cliente que vamos a actualizar, ejemplo: { "firstName": "Bruce ", "lastName": "Wayne ", "birthdate": "2005-10-04", "docNumber": "25643456" }
    * @param id identificador unico del cliente que vamos a actualizar
    * @return Actualiza un cliente seleccionado
    */
