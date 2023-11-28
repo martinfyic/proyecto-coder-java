@@ -12,9 +12,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,7 +48,6 @@ public class ClientService {
     if (optionalClient.isEmpty()) {
       return null;
     }
-
     final ClientModel client = optionalClient.get();
     return new ClientDTO(client.getId(), client.getFirstName(), client.getLastName(), client.getBirthdate(), client.getDocNumber());
   }
@@ -77,7 +74,12 @@ public class ClientService {
    * @param client objeto del tipo ClientModel
    * @return devuelve cliente creado
    */
-  public ClientModel createClient(ClientModel client) {
+  public ClientModel createClient(ClientDTO clientDTO) {
+    ClientModel client = new ClientModel();
+    client.setFirstName(clientDTO.getFirstName());
+    client.setLastName(clientDTO.getLastName());
+    client.setBirthdate(clientDTO.getBirthdate());
+    client.setDocNumber(clientDTO.getDocNumber());
     return clientRepository.save(client);
   }
 

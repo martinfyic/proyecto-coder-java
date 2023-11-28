@@ -23,15 +23,10 @@ public class InvoiceDetailModel {
   @JoinColumn(name = "product_id", nullable = false)
   private ProductModel product;
 
-  @NotNull
-  @PositiveOrZero
   @Column(nullable = false)
   private Integer quantity;
 
-  @NotNull
-  @Positive
   @Column(nullable = false)
   private Double price;
-
 
 }

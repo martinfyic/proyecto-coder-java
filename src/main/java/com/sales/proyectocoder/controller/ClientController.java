@@ -74,15 +74,14 @@ public class ClientController {
    * @return Crea cliente creado
    */
   @PostMapping
-  public ResponseEntity<ClientModel> createClient(@RequestBody ClientModel client) {
-    ClientModel createdClient = clientService.createClient(client);
+  public ResponseEntity<ClientModel> createClient(@RequestBody ClientDTO clientDTO) {
+    ClientModel createdClient = clientService.createClient(clientDTO);
     return new ResponseEntity<>(createdClient, HttpStatus.CREATED);
   }
 
   /**
-   *
    * @param client información del cliente que vamos a actualizar, ejemplo: { "firstName": "Bruce ", "lastName": "Wayne ", "birthdate": "2005-10-04", "docNumber": "25643456" }
-   * @param id identificador unico del cliente que vamos a actualizar
+   * @param id     identificador unico del cliente que vamos a actualizar
    * @return Actualiza un cliente seleccionado
    */
   @PutMapping("/{id}")
