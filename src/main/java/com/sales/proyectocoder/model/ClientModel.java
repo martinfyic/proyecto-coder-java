@@ -1,5 +1,6 @@
 package com.sales.proyectocoder.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -8,6 +9,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "clients")
+@Schema(description = "Modelo de clientes")
 public class ClientModel {
 
   @Id
