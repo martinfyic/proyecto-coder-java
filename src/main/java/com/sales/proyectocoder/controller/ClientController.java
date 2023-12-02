@@ -5,6 +5,10 @@ import com.sales.proyectocoder.model.ClientModel;
 import com.sales.proyectocoder.response.ClientYearsOldResponse;
 import com.sales.proyectocoder.response.DeleteResponse;
 import com.sales.proyectocoder.service.ClientService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +20,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("api/v1/clients")
+@Tag(name="Controlador Client", description = "Request relacionadas con los usuarios")
 public class ClientController {
   @Autowired
   private ClientService clientService;
@@ -23,6 +28,7 @@ public class ClientController {
   /**
    * @return Lista de todos los clientes
    */
+  @Operation(summary = "Listar todos los usuarios", description = "Listar todos los usuarios en formato string")
   @GetMapping
   public ResponseEntity<List<ClientDTO>> getAllClients() {
     List<ClientDTO> clients = clientService.getAllClients();
@@ -34,6 +40,7 @@ public class ClientController {
    * @param id numero identificador del cliente
    * @return Retorna cliente seleccionado por su id
    */
+  @Operation(summary = "Muestra uns usuario", description = "Muestra un usuario por su id")
   @GetMapping("/{id}")
   public ResponseEntity<?> getClientById(@PathVariable Integer id) {
     ClientDTO clientById = clientService.getClientById(id);
@@ -54,6 +61,11 @@ public class ClientController {
    * @param id numero identificador del cliente
    * @return Retorna la edad de un cliente seleccionado
    */
+  @Operation(summary = "Muestra un usuario para obtener su edad", description = "Muestra un usuario por su id y obtiene la edad")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Request Exitoso"),
+      @ApiResponse(responseCode = "400", description = "Bad Request")
+  })
   @GetMapping("/{id}/years-old")
   public ResponseEntity<?> getClientYearsOld(@PathVariable Integer id) {
     ClientYearsOldResponse clientResponse = clientService.getClientYearsOld(id);
@@ -70,9 +82,10 @@ public class ClientController {
 
   /**
    *
-   * @param client información del cliente a crear, ejemplo: { "firstName": "Bruce ", "lastName": "Wayne ", "birthdate": "2005-10-04", "docNumber": "25643456" }
+   * @param clientDTO información del cliente a crear, ejemplo: { "firstName": "Bruce ", "lastName": "Wayne ", "birthdate": "2005-10-04", "docNumber": "25643456" }
    * @return Crea cliente creado
    */
+  @Operation(summary = "Crear un usuario", description = "Crea un usuario y lo guarda en DB")
   @PostMapping
   public ResponseEntity<ClientModel> createClient(@RequestBody ClientDTO clientDTO) {
     ClientModel createdClient = clientService.createClient(clientDTO);
