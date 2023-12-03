@@ -1,9 +1,6 @@
 package com.sales.proyectocoder.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 
 @Data
@@ -15,11 +12,11 @@ public class InvoiceDetailModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "invoice_id", nullable = false)
   private InvoiceModel invoice;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "product_id", nullable = false)
   private ProductModel product;
 
