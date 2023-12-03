@@ -27,10 +27,12 @@ CREATE TABLE coderproyect.products (
 CREATE TABLE coderproyect.invoice (
 	id INT AUTO_INCREMENT,
     client_id INT NOT NULL,
+    invoice_details_id INT NOT NULL,
     created_at DATETIME NOT NULL,
     total DOUBLE NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT fk_client_id FOREIGN KEY (client_id) REFERENCES clients(id)
+    CONSTRAINT fk_invoice_details_id FOREIGN KEY (invoice_details_id) REFERENCES invoice_details(id)
 );
 
 CREATE TABLE coderproyect.invoice_details (
