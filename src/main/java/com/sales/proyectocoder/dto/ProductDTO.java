@@ -1,4 +1,4 @@
-package com.sales.proyectocoder.DTO;
+package com.sales.proyectocoder.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
