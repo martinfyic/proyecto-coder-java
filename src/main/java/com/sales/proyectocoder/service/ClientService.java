@@ -1,6 +1,6 @@
 package com.sales.proyectocoder.service;
 
-import com.sales.proyectocoder.DTO.ClientDTO;
+import com.sales.proyectocoder.dto.ClientDTO;
 import com.sales.proyectocoder.model.ClientModel;
 import com.sales.proyectocoder.repository.ClientRepository;
 import com.sales.proyectocoder.response.ClientYearsOldResponse;
