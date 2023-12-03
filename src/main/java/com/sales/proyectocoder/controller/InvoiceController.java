@@ -1,9 +1,8 @@
 package com.sales.proyectocoder.controller;
 
-import com.sales.proyectocoder.DTO.InvoiceDTO;
+import com.sales.proyectocoder.dto.InvoiceDTO;
 import com.sales.proyectocoder.model.InvoiceModel;
 import com.sales.proyectocoder.service.InvoiceService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,8 +30,9 @@ public class InvoiceController {
   *   POST - Crear Invoice
   */
   @PostMapping
-  public InvoiceModel createInvoice(@RequestBody InvoiceDTO invoiceDTO) {
-    return invoiceService.createInvoice(invoiceDTO);
+  public ResponseEntity<InvoiceModel> createInvoice(@RequestBody InvoiceDTO invoiceDTO) {
+    InvoiceModel createdInvoice = invoiceService.createInvoice(invoiceDTO);
+    return ResponseEntity.ok(createdInvoice);
   }
 
   /* TODO
