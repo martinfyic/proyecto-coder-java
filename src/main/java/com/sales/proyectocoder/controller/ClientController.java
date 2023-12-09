@@ -65,14 +65,31 @@ public class ClientController {
 
   @Operation(summary = "Crear un usuario", description = "Crea un usuario y lo guarda en DB")
   @PostMapping
-  public ResponseEntity<ClientModel> createClient(@RequestBody ClientModel client) {
+  public ResponseEntity<?> createClient(@RequestBody ClientModel client) {
+
+    if (client == null || client.getId() != null || client.getFirstName() == null || client.getLastName() == null || client.getBirthdate() == null || client.getDocNumber() == null) {
+      Map<String, String> response = new HashMap<>();
+      response.put("status", "error");
+      response.put("message", "Datos de cliente no válidos");
+      return ResponseEntity.badRequest().body(response);
+    }
+
     ClientModel createdClient = clientService.createClient(client);
     return new ResponseEntity<>(createdClient, HttpStatus.CREATED);
   }
 
   @Operation(summary = "Actualiza usuario", description = "Actualiza un usuario buscado por su id")
   @PutMapping("/{id}")
-  public ResponseEntity<ClientModel> updateClient(@RequestBody ClientModel client, @PathVariable Integer id) {
+  public ResponseEntity<?> updateClient(@RequestBody ClientModel client, @PathVariable Integer id) {
+    ClientModel existingClient = clientService.getClientById(id);
+
+    if (existingClient == null) {
+      Map<String, String> response = new HashMap<>();
+      response.put("status", "error");
+      response.put("message", "Cliente no encontrado con el ID proporcionado: " + id);
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
+
     ClientModel updatedClient = clientService.updateClient(client, id);
     return (updatedClient != null) ? ResponseEntity.ok(updatedClient) : ResponseEntity.notFound().build();
   }
