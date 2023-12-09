@@ -14,6 +14,7 @@ import java.util.List;
 @EqualsAndHashCode
 public class InvoiceDTO {
 
+  private Integer id;
   private Integer clientId;
   private LocalDateTime createdAt;
   private List<InvoiceDetailDTO> details;
