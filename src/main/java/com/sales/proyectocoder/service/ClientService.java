@@ -1,6 +1,5 @@
 package com.sales.proyectocoder.service;
 
-import com.sales.proyectocoder.dto.ClientDTO;
 import com.sales.proyectocoder.model.ClientModel;
 import com.sales.proyectocoder.repository.ClientRepository;
 import com.sales.proyectocoder.response.ClientYearsOldResponse;
@@ -13,7 +12,6 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class ClientService {
@@ -22,40 +20,25 @@ public class ClientService {
 
   /**
    *
-   * @return Lista con todos los clientes en DB
+   * @return Lista con todos los clientes en DB, si no hay clientes retorna un []
    */
-  public List<ClientDTO> getAllClients() {
-    List<ClientModel> clients = clientRepository.findAll();
-
-    return clients.stream().map(client -> {
-      ClientDTO clientDTO = new ClientDTO();
-      clientDTO.setId(client.getId());
-      clientDTO.setFirstName(client.getFirstName());
-      clientDTO.setLastName(client.getLastName());
-      clientDTO.setBirthdate(client.getBirthdate());
-      clientDTO.setDocNumber(client.getDocNumber());
-      return clientDTO;
-    }).collect(Collectors.toList());
+  public List<ClientModel> getAllClients() {
+    return clientRepository.findAll();
   }
 
   /**
    *
    * @param id identificador unico del cliente
-   * @return devuelve cliente seleccionado
+   * @return devuelve cliente seleccionado, si no lo encuentra devuelve null
    */
-  public ClientDTO getClientById(Integer id) {
-    final Optional<ClientModel> optionalClient = clientRepository.findById(id);
-    if (optionalClient.isEmpty()) {
-      return null;
-    }
-    final ClientModel client = optionalClient.get();
-    return new ClientDTO(client.getId(), client.getFirstName(), client.getLastName(), client.getBirthdate(), client.getDocNumber());
+  public ClientModel getClientById(Integer id) {
+    return clientRepository.findById(id).orElse(null);
   }
 
   /**
    *
    * @param id identificador unico del cliente
-   * @return devuelve cliente con el calculo de cuantos años tiene
+   * @return devuelve cliente con el cálculo de cuantos años tiene, de lo contrario devuelve null
    */
   public ClientYearsOldResponse getClientYearsOld(Integer id) {
     Optional<ClientModel> clientById = clientRepository.findById(id);
@@ -74,17 +57,15 @@ public class ClientService {
    * @param client objeto del tipo ClientModel
    * @return devuelve cliente creado
    */
-  public ClientModel createClient(ClientDTO clientDTO) {
-    ClientModel client = new ClientModel();
-    client.setFirstName(clientDTO.getFirstName());
-    client.setLastName(clientDTO.getLastName());
-    client.setBirthdate(clientDTO.getBirthdate());
-    client.setDocNumber(clientDTO.getDocNumber());
+  public ClientModel createClient(ClientModel client) {
     return clientRepository.save(client);
   }
 
-  /*
-   *  Actualizar cliente, buscar por id y actualizar
+  /**
+   *
+   * @param client Cliente que se debe actualizar
+   * @param id Identificador unico del cliente que se va a actualizar
+   * @return Retorna el cliente con la información actualizada, se pueden actualizar todos los atributos o solo el necesario
    */
   public ClientModel updateClient(ClientModel client, Integer id) {
     Optional<ClientModel> clientExist = clientRepository.findById(id);
@@ -114,8 +95,10 @@ public class ClientService {
     }
   }
 
-  /*
-   *  Eliminar cliente por su id y en el caso de no existir enviar mensaje
+  /**
+   *
+   * @param id Idetificador unico del cliente que se quiere eliminar
+   * @return Retorna un objeto con status de la operacion y mensaje
    */
   public DeleteResponse deleteClient(Integer id) {
     if (clientRepository.existsById(id)) {
@@ -127,7 +110,7 @@ public class ClientService {
   }
 
   /*
-   *  Calcular los yearsOld del cliente, recibo por parametro fecvha de nacimiento del cliente guardado en DB
+   *  Metodo para calcular los yearsOld del cliente, recibo por parametro fecha de nacimiento del cliente guardado en DB
    */
   private int calculateYearsOld(Date birthdate) {
     Instant instant = birthdate.toInstant();
