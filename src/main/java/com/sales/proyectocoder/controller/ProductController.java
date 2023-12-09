@@ -18,7 +18,6 @@ public class ProductController {
   private ProductService productService;
 
   /**
-   *
    * @return Lista de productos guardados en DB
    */
   @GetMapping
@@ -28,7 +27,6 @@ public class ProductController {
   }
 
   /**
-   *
    * @param id número identificador del producto
    * @return Retorna producto seleccionado
    */
@@ -43,7 +41,6 @@ public class ProductController {
   }
 
   /**
-   *
    * @param product información del producto a crear, ejemplo: { "code": "TSHIRT", "description": "Remera clasica blanca", "stock": 40, "price": 1200 }
    * @return Retorna producto creado
    */
@@ -54,9 +51,8 @@ public class ProductController {
   }
 
   /**
-   *
    * @param product información para actualizar producto
-   * @param id número identificador del producto
+   * @param id      número identificador del producto
    * @return Retorna producto actualizado
    */
   @PutMapping("/{id}")
@@ -66,7 +62,6 @@ public class ProductController {
   }
 
   /**
-   *
    * @param id número identificador del producto
    * @return Devuelve String con mensaje de success o error
    */
