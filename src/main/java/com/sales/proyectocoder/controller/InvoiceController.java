@@ -4,6 +4,7 @@ import com.sales.proyectocoder.dto.InvoiceDTO;
 import com.sales.proyectocoder.model.InvoiceModel;
 import com.sales.proyectocoder.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,27 +17,22 @@ public class InvoiceController {
   @Autowired
   private InvoiceService invoiceService;
 
-  /**
-   *
-   * @return Lista de todas las invoices
-   */
   @GetMapping
-  public ResponseEntity<List<InvoiceDTO>> getAllInvoices() {
-    List<InvoiceDTO> invoices = invoiceService.getAllInvoices();
+  public ResponseEntity<List<InvoiceModel>> getAllInvoices() {
+    List<InvoiceModel> invoices = invoiceService.getAllInvoices();
     return ResponseEntity.ok(invoices);
   }
 
-  /* TODO
-  *   POST - Crear Invoice
-  */
-  @PostMapping
-  public ResponseEntity<InvoiceModel> createInvoice(@RequestBody InvoiceDTO invoiceDTO) {
-    InvoiceModel createdInvoice = invoiceService.createInvoice(invoiceDTO);
-    return ResponseEntity.ok(createdInvoice);
+  @GetMapping("/{id}")
+  public ResponseEntity<InvoiceModel> getInvoiceById(@PathVariable Integer id) {
+    InvoiceModel invoice = invoiceService.getInvoiceById(id);
+    return ResponseEntity.ok(invoice);
   }
 
-  /* TODO
-   *   GET - Listar invoice por ID
-   */
+  @PostMapping
+  public ResponseEntity<InvoiceDTO> createInvoice(@RequestBody InvoiceDTO invoiceDTO) {
+    InvoiceDTO createdInvoice = invoiceService.createInvoice(invoiceDTO);
+    return new ResponseEntity<>(createdInvoice, HttpStatus.CREATED);
+  }
 
 }

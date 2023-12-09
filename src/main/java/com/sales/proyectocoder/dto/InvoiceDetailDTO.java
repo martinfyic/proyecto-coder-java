@@ -1,20 +1,19 @@
 package com.sales.proyectocoder.dto;
 
-import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 public class InvoiceDetailDTO {
 
-  @NotNull
-  private Integer invoiceId;
-
-  @NotNull
   private Integer productId;
-
-  @NotNull
   private Integer quantity;
+  private Double unitPrice;
+  private Double totalPrice;
 
-  @NotNull
-  private Double price;
 }

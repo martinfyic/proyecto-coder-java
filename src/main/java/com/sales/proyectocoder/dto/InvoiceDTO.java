@@ -1,23 +1,21 @@
 package com.sales.proyectocoder.dto;
 
-import com.sales.proyectocoder.model.InvoiceDetailModel;
-import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-import java.util.Date;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 public class InvoiceDTO {
 
-  @NotNull
   private Integer clientId;
+  private LocalDateTime createdAt;
+  private List<InvoiceDetailDTO> details;
 
-  @NotNull
-  private Date createdAt;
-
-  @NotNull
-  private Double total;
-
-  private Set<InvoiceDetailModel> invoiceDetail;
 }

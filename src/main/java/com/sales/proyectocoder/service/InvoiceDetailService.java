@@ -21,19 +21,4 @@ public class InvoiceDetailService {
     return invoiceDetailRepository.findAll();
   }
 
-  /* TODO
-   *  Listar una invoiceDetail por id
-   */
-
-  /* TODO
-   *  Crear invoiceDetail
-   */
-
-  /* TODO
-   *  Actualizar un invoiceDetail por id
-   */
-
-  /* TODO
-   *  Eliminar un invoiceDetail por id
-   */
 }
