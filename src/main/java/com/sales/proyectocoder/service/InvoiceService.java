@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,6 +43,12 @@ public class InvoiceService {
 
     InvoiceModel savedInvoice = invoiceRepository.save(mapInvoiceToEntity(invoiceDTO));
     return mapInvoiceToDTO(savedInvoice);
+  }
+
+  public List<InvoiceDTO> getAllInvoicesDTO() {
+    return getAllInvoices().stream()
+        .map(this::mapInvoiceToDTO)
+        .collect(Collectors.toList());
   }
 
   private InvoiceModel mapInvoiceToEntity(InvoiceDTO invoiceDTO) {
@@ -86,7 +91,7 @@ public class InvoiceService {
     return invoice;
   }
 
-  private InvoiceDTO mapInvoiceToDTO(InvoiceModel invoice) {
+  public InvoiceDTO mapInvoiceToDTO(InvoiceModel invoice) {
     InvoiceDTO invoiceDTO = new InvoiceDTO();
     invoiceDTO.setClientId(invoice.getClient().getId());
     invoiceDTO.setCreatedAt(invoice.getCreatedAt());
@@ -95,6 +100,11 @@ public class InvoiceService {
         .map(this::mapDetailToDTO)
         .collect(Collectors.toList());
     invoiceDTO.setDetails(detailsDTO);
+
+    double total = invoice.getDetails().stream()
+        .mapToDouble(InvoiceDetailModel::getTotalPrice)
+        .sum();
+    invoiceDTO.setTotal(total);
 
     return invoiceDTO;
   }
@@ -108,6 +118,7 @@ public class InvoiceService {
 
     return detailDTO;
   }
-
 }
+
+
 

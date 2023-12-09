@@ -18,8 +18,8 @@ public class InvoiceController {
   private InvoiceService invoiceService;
 
   @GetMapping
-  public ResponseEntity<List<InvoiceModel>> getAllInvoices() {
-    List<InvoiceModel> invoices = invoiceService.getAllInvoices();
+  public ResponseEntity<List<InvoiceDTO>> getAllInvoices() {
+    List<InvoiceDTO> invoices = invoiceService.getAllInvoicesDTO();
     return ResponseEntity.ok(invoices);
   }
 

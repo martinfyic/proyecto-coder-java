@@ -17,5 +17,6 @@ public class InvoiceDTO {
   private Integer clientId;
   private LocalDateTime createdAt;
   private List<InvoiceDetailDTO> details;
+  private Double total;
 
 }
