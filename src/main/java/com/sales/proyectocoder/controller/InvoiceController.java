@@ -31,6 +31,10 @@ public class InvoiceController {
   @Operation(summary = "Muestra factura seleccionada por su ID", description = "Muestra factura seleccionada por su ID")
   @GetMapping("/{id}")
   public ResponseEntity<?> getInvoiceById(@PathVariable Integer id) {
+    if (id == null || id <= 0) {
+      return ResponseEntity.badRequest().build();
+    }
+
     InvoiceDTO invoice = invoiceService.getInvoiceById(id);
 
     if (invoice != null) {
@@ -48,7 +52,7 @@ public class InvoiceController {
   @PostMapping
   public ResponseEntity<InvoiceDTO> createInvoice(@RequestBody InvoiceDTO invoiceDTO) {
 
-    if (invoiceDTO == null || invoiceDTO.getClientId() == null) {
+    if (invoiceDTO == null || invoiceDTO.getClientId() == null || invoiceDTO.getClientId() <= 0) {
       return ResponseEntity.badRequest().build();
     }
 

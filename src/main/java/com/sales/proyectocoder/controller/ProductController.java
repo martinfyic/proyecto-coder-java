@@ -1,6 +1,5 @@
 package com.sales.proyectocoder.controller;
 
-import com.sales.proyectocoder.exceptions.EntityNotFoundException;
 import com.sales.proyectocoder.model.ProductModel;
 import com.sales.proyectocoder.response.DeleteResponse;
 import com.sales.proyectocoder.service.ProductService;
@@ -9,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/v1/products")
@@ -32,11 +33,15 @@ public class ProductController {
    */
   @GetMapping("/{id}")
   public ResponseEntity<?> getProductById(@PathVariable Integer id) {
-    try {
       ProductModel product = productService.getProductById(id);
+
+    if (product != null) {
       return ResponseEntity.ok(product);
-    } catch (EntityNotFoundException e) {
-      return ResponseEntity.notFound().build();
+    } else {
+      Map<String, String> response = new HashMap<>();
+      response.put("status", "error");
+      response.put("message", "No se encontró un producto con el ID proporcionado: " + id);
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
   }
 

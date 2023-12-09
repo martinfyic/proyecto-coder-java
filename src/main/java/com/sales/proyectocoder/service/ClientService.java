@@ -18,28 +18,14 @@ public class ClientService {
   @Autowired
   private ClientRepository clientRepository;
 
-  /**
-   *
-   * @return Lista con todos los clientes en DB, si no hay clientes retorna un []
-   */
   public List<ClientModel> getAllClients() {
     return clientRepository.findAll();
   }
 
-  /**
-   *
-   * @param id identificador unico del cliente
-   * @return devuelve cliente seleccionado, si no lo encuentra devuelve null
-   */
   public ClientModel getClientById(Integer id) {
     return clientRepository.findById(id).orElse(null);
   }
 
-  /**
-   *
-   * @param id identificador unico del cliente
-   * @return devuelve cliente con el cálculo de cuantos años tiene, de lo contrario devuelve null
-   */
   public ClientYearsOldResponse getClientYearsOld(Integer id) {
     Optional<ClientModel> clientById = clientRepository.findById(id);
 
@@ -52,21 +38,14 @@ public class ClientService {
     }
   }
 
-  /**
-   *
-   * @param client objeto del tipo ClientModel
-   * @return devuelve cliente creado
-   */
   public ClientModel createClient(ClientModel client) {
+    if (client == null || client.getId() != null) {
+      throw new IllegalArgumentException("Datos de cliente no válidos");
+    }
+
     return clientRepository.save(client);
   }
 
-  /**
-   *
-   * @param client Cliente que se debe actualizar
-   * @param id Identificador unico del cliente que se va a actualizar
-   * @return Retorna el cliente con la información actualizada, se pueden actualizar todos los atributos o solo el necesario
-   */
   public ClientModel updateClient(ClientModel client, Integer id) {
     Optional<ClientModel> clientExist = clientRepository.findById(id);
 
@@ -95,11 +74,6 @@ public class ClientService {
     }
   }
 
-  /**
-   *
-   * @param id Idetificador unico del cliente que se quiere eliminar
-   * @return Retorna un objeto con status de la operacion y mensaje
-   */
   public DeleteResponse deleteClient(Integer id) {
     if (clientRepository.existsById(id)) {
       clientRepository.deleteById(id);

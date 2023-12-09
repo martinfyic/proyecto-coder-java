@@ -63,8 +63,26 @@ public class InvoiceService {
       invoiceDTO.setCreatedAt(LocalDateTime.now());
     }
 
+    /**
+     * Se valida stock antes de guardar, si no hay stock para un producto no se genera la transaccion
+     */
+    validateStock(invoiceDTO);
+
     InvoiceModel savedInvoice = invoiceRepository.save(mapInvoiceToEntity(invoiceDTO));
     return mapInvoiceToDTO(savedInvoice);
+  }
+
+  /**
+   * Metodo para validar stock de todos los productos antes de generar Invoice y evitar
+   */
+  private void validateStock(InvoiceDTO invoiceDTO) {
+    for (InvoiceDetailDTO detailDTO : invoiceDTO.getDetails()) {
+      ProductModel product = productService.getProductById(detailDTO.getProductId());
+
+      if (product.getStock() < detailDTO.getQuantity()) {
+        throw new RuntimeException("No hay suficiente stock para el producto: " + product.getCode());
+      }
+    }
   }
 
   private InvoiceModel mapInvoiceToEntity(InvoiceDTO invoiceDTO) {
@@ -78,10 +96,6 @@ public class InvoiceService {
 
     for (InvoiceDetailDTO detailDTO : invoiceDTO.getDetails()) {
       ProductModel product = productService.getProductById(detailDTO.getProductId());
-
-      if (product.getStock() < detailDTO.getQuantity()) {
-        throw new RuntimeException("No hay suficiente stock para el producto: " + product.getCode());
-      }
 
       InvoiceDetailModel detail = new InvoiceDetailModel();
       detail.setProduct(product);
