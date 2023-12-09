@@ -3,6 +3,7 @@ package com.sales.proyectocoder.service;
 import com.sales.proyectocoder.model.ProductModel;
 import com.sales.proyectocoder.repository.ProductRepository;
 import com.sales.proyectocoder.response.DeleteResponse;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +30,7 @@ public class ProductService {
    * @return Retorno producto seleccionado
    */
   public ProductModel getProductById(Integer id) {
-    Optional<ProductModel> optionalProduct = productRepository.findById(id);
-    return optionalProduct.orElse(null);
+    return productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Producto con id " + id + " no encontrado"));
   }
 
   /**

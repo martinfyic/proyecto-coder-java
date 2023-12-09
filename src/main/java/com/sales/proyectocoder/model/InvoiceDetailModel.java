@@ -1,13 +1,15 @@
 package com.sales.proyectocoder.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "invoice_details")
 public class InvoiceDetailModel {
 
@@ -15,18 +17,22 @@ public class InvoiceDetailModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "invoice_id", nullable = false)
   private InvoiceModel invoice;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "product_id", nullable = false)
+  @JsonManagedReference
   private ProductModel product;
 
   @Column(nullable = false)
   private Integer quantity;
 
   @Column(nullable = false)
-  private Double price;
+  private Double unitPrice;
+
+  @Column(nullable = false)
+  private Double totalPrice;
 
 }
