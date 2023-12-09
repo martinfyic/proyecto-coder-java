@@ -31,24 +31,40 @@ public class InvoiceService {
     return invoiceRepository.findAll();
   }
 
-  public InvoiceModel getInvoiceById(Integer id) {
-    return invoiceRepository.findById(id).orElse(null);
+  /**
+   * Creo método getAllInvoicesDTO para mapear respuesta de getAllInvoices y devolver lista de Invoice como se pide en el desafío
+   */
+  public List<InvoiceDTO> getAllInvoicesDTO() {
+    return getAllInvoices().stream()
+        .map(this::mapInvoiceToDTO)
+        .collect(Collectors.toList());
+  }
+
+  public InvoiceDTO getInvoiceById(Integer id) {
+    InvoiceModel invoice = invoiceRepository.findById(id).orElse(null);
+    if (invoice == null) {
+      return null;
+    }
+    return mapInvoiceToDTO(invoice);
   }
 
 
   public InvoiceDTO createInvoice(InvoiceDTO invoiceDTO) {
+
+    if (invoiceDTO == null || invoiceDTO.getClientId() == null || invoiceDTO.getDetails().isEmpty()) {
+      throw new IllegalArgumentException("Datos de factura no válidos");
+    }
+
+    if (invoiceDTO.getId() != null) {
+      throw new IllegalArgumentException("El ID de la factura debe ser nulo al crear una nueva factura");
+    }
+
     if (invoiceDTO.getCreatedAt() == null) {
       invoiceDTO.setCreatedAt(LocalDateTime.now());
     }
 
     InvoiceModel savedInvoice = invoiceRepository.save(mapInvoiceToEntity(invoiceDTO));
     return mapInvoiceToDTO(savedInvoice);
-  }
-
-  public List<InvoiceDTO> getAllInvoicesDTO() {
-    return getAllInvoices().stream()
-        .map(this::mapInvoiceToDTO)
-        .collect(Collectors.toList());
   }
 
   private InvoiceModel mapInvoiceToEntity(InvoiceDTO invoiceDTO) {
@@ -93,6 +109,7 @@ public class InvoiceService {
 
   public InvoiceDTO mapInvoiceToDTO(InvoiceModel invoice) {
     InvoiceDTO invoiceDTO = new InvoiceDTO();
+    invoiceDTO.setId(invoice.getId());
     invoiceDTO.setClientId(invoice.getClient().getId());
     invoiceDTO.setCreatedAt(invoice.getCreatedAt());
 
