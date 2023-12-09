@@ -42,16 +42,11 @@ public class InvoiceService {
       invoiceDTO.setCreatedAt(LocalDateTime.now());
     }
 
-    Iterator<InvoiceDetailDTO> iterator = invoiceDTO.getDetails().iterator();
-    while (iterator.hasNext()) {
-      InvoiceDetailDTO detailDTO = iterator.next();
-    }
-
-    InvoiceModel savedInvoice = invoiceRepository.save(mapToEntity(invoiceDTO));
-    return mapToDTO(savedInvoice);
+    InvoiceModel savedInvoice = invoiceRepository.save(mapInvoiceToEntity(invoiceDTO));
+    return mapInvoiceToDTO(savedInvoice);
   }
 
-  private InvoiceModel mapToEntity(InvoiceDTO invoiceDTO) {
+  private InvoiceModel mapInvoiceToEntity(InvoiceDTO invoiceDTO) {
     InvoiceModel invoice = new InvoiceModel();
     invoice.setClient(clientService.getClientById(invoiceDTO.getClientId()));
     invoice.setDetails(new ArrayList<>());
@@ -91,20 +86,20 @@ public class InvoiceService {
     return invoice;
   }
 
-  private InvoiceDTO mapToDTO(InvoiceModel invoice) {
+  private InvoiceDTO mapInvoiceToDTO(InvoiceModel invoice) {
     InvoiceDTO invoiceDTO = new InvoiceDTO();
     invoiceDTO.setClientId(invoice.getClient().getId());
     invoiceDTO.setCreatedAt(invoice.getCreatedAt());
 
     List<InvoiceDetailDTO> detailsDTO = invoice.getDetails().stream()
-        .map(this::mapToDTO)
+        .map(this::mapDetailToDTO)
         .collect(Collectors.toList());
     invoiceDTO.setDetails(detailsDTO);
 
     return invoiceDTO;
   }
 
-  private InvoiceDetailDTO mapToDTO(InvoiceDetailModel detail) {
+  private InvoiceDetailDTO mapDetailToDTO(InvoiceDetailModel detail) {
     InvoiceDetailDTO detailDTO = new InvoiceDetailDTO();
     detailDTO.setProductId(detail.getProduct().getId());
     detailDTO.setQuantity(detail.getQuantity());
