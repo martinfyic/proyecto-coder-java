@@ -21,12 +21,12 @@ public class InvoiceModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = CascadeType.REMOVE)
   @JoinColumn(name = "client_id", nullable = false)
   @JsonManagedReference
   private ClientModel client;
 
-  @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "invoice", cascade = CascadeType.REMOVE, orphanRemoval = true)
   @JsonBackReference
   private List<InvoiceDetailModel> details;
 
