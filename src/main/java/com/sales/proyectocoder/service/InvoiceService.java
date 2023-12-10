@@ -5,13 +5,18 @@ import com.sales.proyectocoder.dto.InvoiceDetailDTO;
 import com.sales.proyectocoder.model.InvoiceDetailModel;
 import com.sales.proyectocoder.model.InvoiceModel;
 import com.sales.proyectocoder.model.ProductModel;
+import com.sales.proyectocoder.model.WorldClock;
 import com.sales.proyectocoder.repository.InvoiceDetailRepository;
 import com.sales.proyectocoder.repository.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
 
-import java.time.LocalDateTime;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +31,8 @@ public class InvoiceService {
   private ProductService productService;
   @Autowired
   private ClientService clientService;
+  @Autowired
+  private RestTemplate restTemplate;
 
   public List<InvoiceModel> getAllInvoices() {
     return invoiceRepository.findAll();
@@ -60,7 +67,21 @@ public class InvoiceService {
     }
 
     if (invoiceDTO.getCreatedAt() == null) {
-      invoiceDTO.setCreatedAt(LocalDateTime.now());
+
+      try {
+        final String url = "http://worldclockapi.com/api/json/utc/now";
+        WorldClock worldClock = restTemplate.getForObject(url, WorldClock.class);
+        String currentDateTime = worldClock.getCurrentDateTime();
+        Date date = new SimpleDateFormat("yyy-MM-dd'T'mm:ss'Z'").parse(currentDateTime);
+        invoiceDTO.setCreatedAt(date);
+      } catch (HttpClientErrorException e) {
+        e.printStackTrace();
+        invoiceDTO.setCreatedAt(new Date());
+      } catch (ParseException e) {
+        e.printStackTrace();
+        invoiceDTO.setCreatedAt(new Date());
+      }
+
     }
 
     /**
@@ -73,7 +94,7 @@ public class InvoiceService {
   }
 
   /**
-   * Metodo para validar stock de todos los productos antes de generar Invoice y evitar
+   * Metodo para validar stock de todos los productos
    */
   private void validateStock(InvoiceDTO invoiceDTO) {
     for (InvoiceDetailDTO detailDTO : invoiceDTO.getDetails()) {
