@@ -17,11 +17,11 @@ public class InvoiceDetailModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = CascadeType.REMOVE)
   @JoinColumn(name = "invoice_id", nullable = false)
   private InvoiceModel invoice;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = CascadeType.REMOVE)
   @JoinColumn(name = "product_id", nullable = false)
   @JsonManagedReference
   private ProductModel product;

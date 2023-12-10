@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,18 +21,18 @@ public class InvoiceModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = CascadeType.REMOVE)
   @JoinColumn(name = "client_id", nullable = false)
   @JsonManagedReference
   private ClientModel client;
 
-  @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "invoice", cascade = CascadeType.REMOVE, orphanRemoval = true)
   @JsonBackReference
   private List<InvoiceDetailModel> details;
 
   @Column(name = "created_at", nullable = false)
   @Temporal(TemporalType.TIMESTAMP)
-  private LocalDateTime createdAt;
+  private Date createdAt;
 
   @Column(nullable = false)
   private double total;
