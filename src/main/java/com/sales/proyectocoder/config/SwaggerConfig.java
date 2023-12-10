@@ -19,7 +19,7 @@ public class SwaggerConfig {
   @Bean
   public OpenAPI springShopOpenAPI() {
     return new OpenAPI()
-        .info(new Info().title("Proyecto Coder Java")
+        .info(new Info().title("Proyecto Coderhouse Java")
             .description("Proyecto final para el curso Programación con Java")
             .version("v1.0.0"));
   }
