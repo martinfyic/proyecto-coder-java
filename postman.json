@@ -1,0 +1,1074 @@
+{
+	"info": {
+		"_postman_id": "9452c575-bd0f-4473-a686-e4af595a8bfc",
+		"name": "Coderhouse-Java",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22676653"
+	},
+	"item": [
+		{
+			"name": "Clients",
+			"item": [
+				{
+					"name": "Get all clients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/clients",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"clients"
+							]
+						},
+						"description": "Listar todos los clientes"
+					},
+					"response": [
+						{
+							"name": "Get all clients - Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/clients",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"clients"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Dec 2023 13:43:01 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"firstName\": \"Martin\",\n        \"lastName\": \"Ferreira\",\n        \"birthdate\": \"1989-09-19T00:00:00.000+00:00\",\n        \"docNumber\": \"12345678901\"\n    },\n    {\n        \"id\": 2,\n        \"firstName\": \"Jon\",\n        \"lastName\": \"Wick\",\n        \"birthdate\": \"1975-12-22T00:00:00.000+00:00\",\n        \"docNumber\": \"12345678901\"\n    },\n    {\n        \"id\": 3,\n        \"firstName\": \"Ton\",\n        \"lastName\": \"Smith\",\n        \"birthdate\": \"1985-06-30T00:00:00.000+00:00\",\n        \"docNumber\": \"12345678901\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get client by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/clients/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"clients",
+								"2"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Muestra cliente por su id"
+					},
+					"response": [
+						{
+							"name": "Get client by id - Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/clients/2",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"clients",
+										"2"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Dec 2023 13:48:24 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"firstName\": \"Jon\",\n    \"lastName\": \"Wick\",\n    \"birthdate\": \"1975-12-22T00:00:00.000+00:00\",\n    \"docNumber\": \"12345678901\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get client years old",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/clients/2/years-old",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"clients",
+								"2",
+								"years-old"
+							]
+						},
+						"description": "Obtine la edad del cliente seleccionado"
+					},
+					"response": [
+						{
+							"name": "Get client years old - Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/clients/2/years-old",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"clients",
+										"2",
+										"years-old"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Dec 2023 13:52:01 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"firstName\": \"Jon\",\n    \"lastName\": \"Wick\",\n    \"yearsOld\": 47\n}"
+						}
+					]
+				},
+				{
+					"name": "Update client",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"James\",\r\n  \"lastName\": \"Gosling\",\r\n  \"birthdate\": \"1955-05-19\",\r\n  \"id\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/clients/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"clients",
+								"2"
+							]
+						},
+						"description": "Actualiza el cliente, se puede actualizar todos los campos o solo el deseado"
+					},
+					"response": [
+						{
+							"name": "Update client - Example",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"firstName\": \"James\",\r\n  \"lastName\": \"Gosling\",\r\n  \"birthdate\": \"1955-05-19\",\r\n  \"id\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/clients/2",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"clients",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Dec 2023 13:56:10 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"firstName\": \"James\",\n    \"lastName\": \"Gosling\",\n    \"birthdate\": \"1955-05-19T00:00:00.000+00:00\",\n    \"docNumber\": \"12345678901\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Linus\",\r\n    \"lastName\": \"Torvalds\",\r\n    \"birthdate\": \"1969-12-28\",\r\n    \"docNumber\": \"12345678901\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/clients",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"clients"
+							]
+						},
+						"description": "Crea cliente y lo guarda en la DB"
+					},
+					"response": [
+						{
+							"name": "Create client - Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Linus\",\r\n    \"lastName\": \"Torvalds\",\r\n    \"birthdate\": \"1969-12-28\",\r\n    \"docNumber\": \"12345678901\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/clients",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"clients"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Dec 2023 13:59:53 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 4,\n    \"firstName\": \"Linus\",\n    \"lastName\": \"Torvalds\",\n    \"birthdate\": \"1969-12-28T00:00:00.000+00:00\",\n    \"docNumber\": \"12345678901\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete client by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/clients/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"clients",
+								"1"
+							]
+						},
+						"description": "Elimina el cliente seleccionado por su id"
+					},
+					"response": [
+						{
+							"name": "Delete client by id - Example",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/clients/1",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"clients",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Dec 2023 14:15:43 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Cliente con ID 1 eliminado correctamente.\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Request relacionadas a clientes\n\n- GET\n- POST\n- UPDATE\n- DELETE"
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get all products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/products",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products"
+							]
+						},
+						"description": "Lista todos los productos guardados en DB"
+					},
+					"response": [
+						{
+							"name": "Get all products - Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/products",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Dec 2023 14:41:33 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"code\": \"P001\",\n        \"description\": \"Producto 1 de ejemplo\",\n        \"stock\": 100,\n        \"price\": 32.5\n    },\n    {\n        \"id\": 2,\n        \"code\": \"P002\",\n        \"description\": \"Producto 2 de ejemplo\",\n        \"stock\": 12,\n        \"price\": 87.5\n    },\n    {\n        \"id\": 3,\n        \"code\": \"P003\",\n        \"description\": \"Producto 3 de ejemplo\",\n        \"stock\": 5,\n        \"price\": 129.99\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get product by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/products/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"3"
+							]
+						},
+						"description": "Muestra un producto seleccionado por su id"
+					},
+					"response": [
+						{
+							"name": "Get product by id - Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/products/3",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Dec 2023 14:43:07 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"code\": \"P003\",\n    \"description\": \"Producto 3 de ejemplo\",\n    \"stock\": 5,\n    \"price\": 129.99\n}"
+						}
+					]
+				},
+				{
+					"name": "Update product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Producto actualizado\",\r\n    \"stock\": 3,\r\n    \"price\": 1199.98\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/products/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"3"
+							]
+						},
+						"description": "Actualiza un producto, se puede actualizar un atributo o todos"
+					},
+					"response": [
+						{
+							"name": "Update product - Example",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\": \"Producto actualizado\",\r\n    \"stock\": 3,\r\n    \"price\": 1199.98\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/products/3",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Dec 2023 14:45:00 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"code\": \"P003\",\n    \"description\": \"Producto actualizado\",\n    \"stock\": 3,\n    \"price\": 1199.98\n}"
+						}
+					]
+				},
+				{
+					"name": "Create product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"P001\",\r\n    \"description\": \"Producto 1 de ejemplo\",\r\n    \"stock\": 100,\r\n    \"price\": 32.50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/products",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products"
+							]
+						},
+						"description": "Crea un producto y lo guarda en DB"
+					},
+					"response": [
+						{
+							"name": "Create product - Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"P001\",\r\n    \"description\": \"Producto 1 de ejemplo\",\r\n    \"stock\": 100,\r\n    \"price\": 32.50\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/products",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Dec 2023 14:38:38 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"code\": \"P001\",\n    \"description\": \"Producto 1 de ejemplo\",\n    \"stock\": 100,\n    \"price\": 32.5\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete product by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/products/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"3"
+							]
+						},
+						"description": "Elimina un producto por su id"
+					},
+					"response": [
+						{
+							"name": "Delete product by id - Example",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/products/3",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Dec 2023 14:46:26 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Producto con ID 3 eliminado correctamente.\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Request relacionadas a Productos\n\n- GET\n- POST\n- UPDATE\n- DELETE"
+		},
+		{
+			"name": "Invoices",
+			"item": [
+				{
+					"name": "Get all invoices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/invoices",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"invoices"
+							]
+						},
+						"description": "Lista todas las facturas creadas"
+					},
+					"response": [
+						{
+							"name": "Get all invoices - Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/invoices",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"invoices"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Dec 2023 14:55:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"clientId\": 2,\n        \"createdAt\": \"2023-12-10T03:14:50.000+00:00\",\n        \"details\": [\n            {\n                \"productId\": 1,\n                \"quantity\": 2,\n                \"unitPrice\": 32.5,\n                \"totalPrice\": 65\n            },\n            {\n                \"productId\": 2,\n                \"quantity\": 5,\n                \"unitPrice\": 87.5,\n                \"totalPrice\": 437.5\n            }\n        ],\n        \"total\": 502.5\n    },\n    {\n        \"id\": 2,\n        \"clientId\": 3,\n        \"createdAt\": \"2023-12-10T03:14:55.000+00:00\",\n        \"details\": [\n            {\n                \"productId\": 1,\n                \"quantity\": 5,\n                \"unitPrice\": 32.5,\n                \"totalPrice\": 162.5\n            },\n            {\n                \"productId\": 2,\n                \"quantity\": 1,\n                \"unitPrice\": 87.5,\n                \"totalPrice\": 87.5\n            }\n        ],\n        \"total\": 250\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get invoice by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/invoices/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"invoices",
+								"1"
+							]
+						},
+						"description": "Muestra factura seleccionada por su id"
+					},
+					"response": [
+						{
+							"name": "Get invoice by id - Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/invoices/1",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"invoices",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Dec 2023 14:51:56 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"clientId\": 2,\n    \"createdAt\": \"2023-12-10T03:14:50.000+00:00\",\n    \"details\": [\n        {\n            \"productId\": 1,\n            \"quantity\": 2,\n            \"unitPrice\": 32.5,\n            \"totalPrice\": 65\n        },\n        {\n            \"productId\": 2,\n            \"quantity\": 5,\n            \"unitPrice\": 87.5,\n            \"totalPrice\": 437.5\n        }\n    ],\n    \"total\": 502.5\n}"
+						}
+					]
+				},
+				{
+					"name": "Create invoice",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clientId\": 2,\r\n    \"details\": [\r\n        {\r\n            \"productId\": 1,\r\n            \"quantity\": 2\r\n        },\r\n        {\r\n            \"productId\": 2,\r\n            \"quantity\": 5\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/invoices",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"invoices"
+							]
+						},
+						"description": "Crea una factura con el detalle de productos, cantidad y total"
+					},
+					"response": [
+						{
+							"name": "Create invoice - Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"clientId\": 2,\r\n    \"details\": [\r\n        {\r\n            \"productId\": 1,\r\n            \"quantity\": 2\r\n        },\r\n        {\r\n            \"productId\": 2,\r\n            \"quantity\": 5\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/invoices",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"invoices"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Dec 2023 14:50:29 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"clientId\": 2,\n    \"createdAt\": \"2023-12-10T03:14:50.000+00:00\",\n    \"details\": [\n        {\n            \"productId\": 1,\n            \"quantity\": 2,\n            \"unitPrice\": 32.5,\n            \"totalPrice\": 65\n        },\n        {\n            \"productId\": 2,\n            \"quantity\": 5,\n            \"unitPrice\": 87.5,\n            \"totalPrice\": 437.5\n        }\n    ],\n    \"total\": 502.5\n}"
+						}
+					]
+				}
+			],
+			"description": "Request relacionadas a Facturas\n\n- GET\n    \n- POST"
+		}
+	]
+}
