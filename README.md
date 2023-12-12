@@ -449,7 +449,7 @@ Este endpoint devuelve una lista de todos los productos.
     "stock": 40,
     "price": 1200
   }
-  // ... otros clientes
+  // ... otros productos
 ]
 ```
 
